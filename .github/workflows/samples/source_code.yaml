@@ -38,7 +38,7 @@ jobs:
       run: |
         cp epic/src/database/cookies/ctx_cookies.yaml .
         cp epic/src/database/logs/runtime.log .
-        cp -a epic/src/database/logs/screenshot ./screenshot
+       #cp -a epic/src/database/logs/screenshot ./screenshot
         rm -rf epic
         git add .
         git commit -m "Automated deployment @ $(date '+%Y-%m-%d %H:%M:%S') Asia/Shanghai"
