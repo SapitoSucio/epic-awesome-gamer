@@ -1,0 +1,56 @@
+name: source-git # 修改你的名称
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "00 12 * * 5" # 修改你的定时配置
+
+jobs:
+  setup:
+    env:
+      COMMAND_CLAIM: "xvfb-run python main.py claim"
+      COMMAND_GET: "xvfb-run python main.py get"
+      COMMAND_UNREAL: "xvfb-run python main.py unreal"
+      FAKE_HASH: "Automated deployment @ $(date '+%Y-%m-%d %H:%M:%S') America/Merida"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: 初始化环境 & 拉取项目
+      run: |
+        sudo timedatectl set-timezone "America/Merida"
+        git clone https://github.com/QIN2DIM/epic-awesome-gamer.git epic
+        cp epic/requirements.txt .
+    - name: 初始化配置文件
+      run: |
+        cd epic/src
+        echo "PUSHER_TELEGRAM: ${{ secrets.PUSHER_TELEGRAM }}" >> config.yaml
+        echo "EPIC_EMAIL: ${{ secrets.EPIC_EMAIL }}" >> config.yaml
+        echo "EPIC_PASSWORD: ${{ secrets.EPIC_PASSWORD }}" >> config.yaml
+        echo "PLAYER: ${{ secrets.PLAYER }}" >>config.yaml
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+        cache: 'pip' # caching pip dependencies
+    - name: 安装依赖
+      run: |
+        pip install -r epic/requirements.txt
+        cd epic/src/ && python main.py install
+    - name: 启动项目
+      run: |
+        if [ -d "database" ];then cp -rfp database epic/src/; fi
+        cd epic/src/
+        ${{ env.COMMAND_CLAIM }}
+        # ${{ env.COMMAND_GET }} # Optional
+        # ${{ env.COMMAND_UNREAL }} # Optional
+    - name: Setup GIT user
+      uses: fregante/setup-git-user@v1
+    - name: 缓存身份令牌
+      run: |
+        if [ -d "epic/src/database" ];then cp -rfp epic/src/database .; fi
+        if [ -f "epic/src/datas/logs/runtime.log" ];then cp epic/src/datas/logs/runtime.log datas.log; fi
+        cp epic/src/database/logs/runtime.log .
+        echo "${{ env.FAKE_HASH }}" > _token
+        rm -rf epic
+        git add .
+        git commit -m "${{ env.FAKE_HASH }}" 
+        git push -f 
