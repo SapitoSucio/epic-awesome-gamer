@@ -78,7 +78,7 @@ class ClaimerScheduler:
                 day_of_week="fri",
                 hour="0",
                 minute=f"{jitter_minute[0]},{jitter_minute[-1]}",
-                timezone="Asia/Shanghai",
+                timezone="America/Merida",
                 jitter=15,
             ),
             id=self._job_id,

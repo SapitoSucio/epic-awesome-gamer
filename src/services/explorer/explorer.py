@@ -26,7 +26,7 @@ class Explorer:
 
     # format:off
     URL_PROMOTIONS = "https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions"
-    URL_PRODUCT_PAGE = "https://store.epicgames.com/zh-CN/p/"
+    URL_PRODUCT_PAGE = "https://store.epicgames.com/es-MX/p/"
     URL_ORDER_HISTORY = "https://www.epicgames.com/account/v2/payment/ajaxGetOrderHistory"
     # format:on
 
@@ -57,7 +57,7 @@ class Explorer:
     def get_free_now(self, page: Page):
         """获取准确的周免游戏数据"""
         promotions = self.get_promotions()
-        page.goto("https://store.epicgames.com/zh-CN/", wait_until="domcontentloaded")
+        page.goto("https://store.epicgames.com/es-MX/", wait_until="domcontentloaded")
         free_games = page.locator("//a[contains(@aria-label,'现在免费')]")
         free_games.last.wait_for()
         hrefs = {
@@ -79,7 +79,7 @@ class Explorer:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/100.0.4896.75 Safari/537.36 Edg/100.0.1185.36"
         }
-        params = {"locale": "zh-CN"}
+        params = {"locale": "es-MX"}
         response = requests.get(self.URL_PROMOTIONS, params=params, headers=headers)
 
         try:
@@ -130,7 +130,7 @@ class Explorer:
                 "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44",
                 "cookie": ToolBox.transfer_cookies(ctx_cookies),
             },
-            "params": {"locale": "zh-CN", "page": page or "0", "latCreateAt": last_create_at or ""},
+            "params": {"locale": "es-MX", "page": page or "0", "latCreateAt": last_create_at or ""},
             "allow_redirects": False,
             "proxies": getproxies(),
         }

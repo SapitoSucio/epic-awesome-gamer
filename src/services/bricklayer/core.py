@@ -69,7 +69,7 @@ class ArmorKnight(solver.HolyChallenger):
     def __init__(
         self, debug: typing.Optional[bool] = False, screenshot: typing.Optional[bool] = False
     ):
-        super().__init__(debug=debug, screenshot=screenshot, lang="zh")
+        super().__init__(debug=debug, screenshot=screenshot, lang="en")
         self.critical_threshold = 3
 
     @property
@@ -397,12 +397,12 @@ class EpicAwesomeGamer:
 
     # 操作对象参数
     URL_ACCOUNT_PERSONAL = "https://www.epicgames.com/account/personal"
-    URL_FREE_GAMES = "https://store.epicgames.com/zh-CN/free-games"
+    URL_FREE_GAMES = "https://store.epicgames.com/es-MX/free-games"
 
     # 购物车结算成功
-    URL_CART_SUCCESS = "https://store.epicgames.com/zh-CN/cart/success"
+    URL_CART_SUCCESS = "https://store.epicgames.com/es-MX/cart/success"
 
-    URL_UNREAL_STORE = "https://www.unrealengine.com/marketplace/zh-CN/assets"
+    URL_UNREAL_STORE = "https://www.unrealengine.com/marketplace/es-MX/assets"
     URL_UNREAL_MONTH = (
         f"{URL_UNREAL_STORE}?count=20&sortBy=effectiveDate&sortDir=DESC&start=0&tag=4910"
     )
@@ -499,9 +499,9 @@ class EpicAwesomeGamer:
         """作为被动方式，登陆账号，刷新 identity token"""
         logger.info(f">> MATCH [{self.action_name}] 刷新令牌")
         if auth_str == "games":
-            url_store = "https://store.epicgames.com/zh-CN/"
+            url_store = "https://store.epicgames.com/es-MX/"
             url_claim = self.URL_FREE_GAMES
-            url_login = f"https://www.epicgames.com/id/login?lang=zh-CN&noHostRedirect=true&redirectUrl={url_claim}"
+            url_login = f"https://www.epicgames.com/id/login?lang=es-MX&noHostRedirect=true&redirectUrl={url_claim}"
             try:
                 page.goto(url_store, wait_until="domcontentloaded")
                 page.goto(url_claim, wait_until="domcontentloaded")
@@ -514,7 +514,7 @@ class EpicAwesomeGamer:
                     return ArmorUtils.AUTH_SUCCESS
         else:
             url_claim = self.URL_UNREAL_MONTH
-            url_login = f"https://www.unrealengine.com/id/login?lang=zh_CN&redirectUrl={url_claim}"
+            url_login = f"https://www.unrealengine.com/id/login?lang=es_MX&redirectUrl={url_claim}"
             try:
                 page.goto(url_claim)
             except NinjaTimeout:

@@ -18,8 +18,8 @@ class UnrealClaimer(EpicAwesomeGamer):
     """虚幻商城月供砖家"""
 
     URL_UNREAL_HOME = "https://www.unrealengine.com"
-    URL_UNREAL_STORE = "https://www.unrealengine.com/marketplace/zh-CN/store"
-    URL_UNREAL_ASSETS = "https://www.unrealengine.com/marketplace/zh-CN/assets"
+    URL_UNREAL_STORE = "https://www.unrealengine.com/marketplace/es-MX/store"
+    URL_UNREAL_ASSETS = "https://www.unrealengine.com/marketplace/es-MX/assets"
     URL_FREE_FOR_THE_MONTH = (
         URL_UNREAL_ASSETS + "?count=20&sortBy=effectiveDate&sortDir=DESC&start=0&tag=4910"
     )

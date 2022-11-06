@@ -17,7 +17,7 @@ from .exceptions import AuthException, UnableToGet
 class GameClaimer(EpicAwesomeGamer):
     """性能更高的调度策略"""
 
-    URL_GAME_CART = "https://store.epicgames.com/zh-CN/cart"
+    URL_GAME_CART = "https://store.epicgames.com/es-MX/cart"
 
     # 促销实体 任务结果
     promotion2result = None

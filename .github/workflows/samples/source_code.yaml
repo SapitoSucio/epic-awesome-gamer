@@ -11,13 +11,13 @@ jobs:
       COMMAND_CLAIM: "xvfb-run python main.py claim"
       COMMAND_GET: "xvfb-run python main.py get"
       COMMAND_UNREAL: "xvfb-run python main.py unreal"
-      FAKE_HASH: "Automated deployment @ $(date '+%Y-%m-%d %H:%M:%S') Asia/Shanghai"
+      FAKE_HASH: "Automated deployment @ $(date '+%Y-%m-%d %H:%M:%S') America/Merida"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: 初始化环境 & 拉取项目
       run: |
-        sudo timedatectl set-timezone "Asia/Shanghai"
+        sudo timedatectl set-timezone "America/Merida"
         git clone https://github.com/QIN2DIM/epic-awesome-gamer.git epic
         cp epic/requirements.txt .
     - name: 初始化配置文件

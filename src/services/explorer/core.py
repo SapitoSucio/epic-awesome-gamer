@@ -48,8 +48,8 @@ class GamePool:
 class StoreExplorer:
     """游戏商店探索者 获取免费游戏数据以及促销信息"""
 
-    URL_STORE_HOME = "https://store.epicgames.com/zh-CN/"
-    URL_STORE_BROWSER = "https://store.epicgames.com/zh-CN/browse"
+    URL_STORE_HOME = "https://store.epicgames.com/es-MX/"
+    URL_STORE_BROWSER = "https://store.epicgames.com/es-MX/browse"
     URL_STORE_FREE_DLC = f"{URL_STORE_BROWSER}?sortBy=releaseDate&sortDir=DESC&priceTier=tierFree&category=GameAddOn&count=40&start=0"
     URL_STORE_FREE_GAME = (
         f"{URL_STORE_BROWSER}?sortBy=releaseDate&sortDir=DESC&priceTier=tierFree&count=40"
@@ -58,7 +58,7 @@ class StoreExplorer:
 
     URL_EXPLORER_FREE_GAMES = (
         "https://store.epicgames.com/graphql?operationName=searchStoreQuery"
-        '&variables={"allowCountries":"CN","category":"games/edition/base","comingSoon":false,"count":80,"country":"CN","effectiveDate":"[,2022-10-01T17:27:22.818Z]","freeGame":true,"keywords":"","locale":"zh-CN","sortBy":"releaseDate","sortDir":"DESC","start":0,"tag":"","withPrice":true}'
+        '&variables={"allowCountries":"CN","category":"games/edition/base","comingSoon":false,"count":80,"country":"CN","effectiveDate":"[,2022-10-01T17:27:22.818Z]","freeGame":true,"keywords":"","locale":"es-MX","sortBy":"releaseDate","sortDir":"DESC","start":0,"tag":"","withPrice":true}'
         '&extensions={"persistedQuery":{"version":1,"sha256Hash":"13a2b6787f1a20d05c75c54c78b1b8ac7c8bf4efc394edf7a5998fdf35d1adb0"}}'
     )
 
@@ -85,7 +85,7 @@ class StoreExplorer:
         self._total_free_games = search_store["paging"]["total"]
         # 编码数据对象
         elements: typing.List[dict] = search_store["elements"]
-        url_prefix = "https://store.epicgames.com/zh-CN/p/"
+        url_prefix = "https://store.epicgames.com/es-MX/p/"
         for element in elements:
             image_url = ""
             try:
